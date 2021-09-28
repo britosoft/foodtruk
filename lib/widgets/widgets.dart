@@ -1,0 +1,12 @@
+export 'package:umami/widgets/auth_background.dart';
+export 'package:umami/widgets/card_container.dart';
+export 'package:umami/widgets/card_widget.dart';
+export 'package:umami/widgets/entradas_escreen.dart';
+export 'package:umami/widgets/platos_fuerte_escreen.dart';
+export 'package:umami/widgets/ceviche_y_ensaladas_escreen.dart';
+export 'package:umami/widgets/bebidas_escreen.dart';
+export 'package:umami/widgets/sandwich_escreen.dart';
+export 'package:umami/widgets/ceviche_y_ensaladas_escreen.dart';
+export 'package:umami/widgets/coverPage_widget.dart';
+export 'package:umami/widgets/manager_producto_screen.dart';
+export 'package:umami/widgets/add_product_screen.dart';
