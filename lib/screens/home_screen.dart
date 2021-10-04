@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
+import 'package:umami/providers/local-storage_provider.dart';
 import 'package:umami/providers/product_provider.dart';
+import 'package:umami/screens/login_screen.dart';
 import 'package:umami/widgets/widgets.dart';
 import 'package:umami/core/models/models.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final productsService = Provider.of<ProductsService>(context);
+    //final productsService = Provider.of<ProductsService>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -52,6 +54,12 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(context, 'pedidos');
                   }),
               ListTile(
+                  title: Text('Login'),
+                  leading: Icon(Icons.supervised_user_circle),
+                  onTap: () {
+                    Navigator.pushNamed(context, 'login');
+                  }),
+              ListTile(
                   title: Text('Mis productos'),
                   leading: Icon(Icons.image),
                   onTap: () {
@@ -60,13 +68,14 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(context, 'product');
                     //Navigator.pop(context);
                   }),
-              ListTile(
-                  title: Text('Iniciar Sesión'),
-                  leading: Icon(Icons.login),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'login');
-                    //Navigator.pop(context);
-                  }),
+              ElevatedButton(
+                  onPressed: () {
+                    LocalStorage().clear();
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        (route) => false);
+                  },
+                  child: Text("Cerrar Sesión"))
             ],
           ),
         ));

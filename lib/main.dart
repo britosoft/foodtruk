@@ -70,10 +70,5 @@ Widget _materialApp(BuildContext context) {
       'add': (_) => Add_productScreen(),
       'usuario': (_) => UserScreen(),
     },
-    home: ValidationScreen(),
-    theme: ThemeData(
-      scaffoldBackgroundColor: Colors.grey,
-      cardColor: Colors.white,
-    ),
   );
 }

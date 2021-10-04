@@ -1,5 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:umami/core/blocs/authentication_bloc/bloc/authentication_bloc.dart';
+import 'package:umami/providers/local-storage_provider.dart';
+import 'package:umami/screens/screen.dart';
 import 'package:umami/screens/user/user_screen.dart';
 import 'package:umami/widgets/custom_input.dart';
 import 'package:umami/widgets/custom_labels.dart';
@@ -38,21 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget connectWithBloc() {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
-      listener: (context, state) {
-        if (state.react == REACT_AUTHENTICATION.getSuccess) {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => UserScreen()),
-              (route) => false);
-        }
-        if (state.react == REACT_AUTHENTICATION.getError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Hubo un error con el servidor")));
-        }
-        if (state.react == REACT_AUTHENTICATION.getErrorEmailNoExist) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Por favor inserte un usuario valido")));
-        }
-      },
+      listener: (context, state) {},
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, AuthenticationState state) {
           bool _flag = true;
@@ -117,6 +105,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     email: controllerEmail.text,
                                     password: controllerPassword.text,
                                   ));
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()),
+                                      (route) => false);
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                              "Error al iniciar sesión vulva a intentarlo nuevamente")));
                                 }
                               },
                               icon: (state.react ==

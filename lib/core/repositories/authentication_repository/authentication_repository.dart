@@ -9,26 +9,17 @@ import 'package:umami/providers/repositories_providers.dart';
 class AuthenticationRepository {
   EUser? eUser;
   Future<DataResponse<EUser>> login(Map<String, dynamic> serialized) async {
-    try {
-      RepositoryProvider _repositoryProvider = RepositoryProvider();
-      final response = await _repositoryProvider.postRequestWithStatusCode(
-          RepositoryProvider.uriAPI, "/login", serialized);
-      print(response.body);
+    RepositoryProvider _repositoryProvider = RepositoryProvider();
+    final response = await _repositoryProvider.postRequestWithStatusCode(
+        RepositoryProvider.uriAPI, "/login", serialized);
+    print(response.body);
 
-      dataResponseFromJson(String body) {
-        final dataResponse = dataResponseFromJson(response.body);
-        this.eUser = dataResponse.eUser;
-      }
-
-      return DataResponse();
-    } catch (e) {
-      final response = {
-        "success": false,
-        "content": null,
-        "error": {"code": 200, "message": "User no exist"}
-      };
-      return DataResponse();
+    dataResponseFromJson(String body) {
+      final dataResponse = dataResponseFromJson(response.body);
+      this.eUser = dataResponse.eUser;
     }
+
+    return DataResponse();
   }
 
   Future<DataResponse<EUser>> register(Map<String, dynamic> serialized) async {

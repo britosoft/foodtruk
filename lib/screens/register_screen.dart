@@ -129,7 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                   );
                                   Navigator.pushReplacementNamed(
-                                      context, 'usuario');
+                                      context, 'home');
                                 } else {
                                   Navigator.pushReplacementNamed(
                                       context, 'register');
